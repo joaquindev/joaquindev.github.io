@@ -1,0 +1,12 @@
+name: Folios 
+description: learning everyday
+meta_description: "Folios. Learning something new about programming and technology"
+
+markdown: redcarpet
+pygments: true
+logo: false 
+paginate: 10
+
+# Details for the RSS feed generator
+url:            'http://joaquindev.github.io'
+author:         'Joaquin Dev'

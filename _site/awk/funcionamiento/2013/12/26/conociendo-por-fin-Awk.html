@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Folios - learning everyday</title>
+    <meta name="description" content="Folios. Learning something new about programming and technology" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+    <!-- This is for syntax highlight -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    
+    <main class="content" role="main">
+
+    <article class="post">
+        <header class="post-header">
+            <a id="blog-logo" href="/">
+                
+                    <span class="blog-title">Folios</span>
+                 
+            </a>
+        </header>
+        
+        <span class="post-meta">
+        	<time datetime="2013-12-26">26 Dec 2013</time>
+        	
+       	</span>
+
+        <h1 class="post-title">Conociendo por fin Awk</h1>
+
+        <section class="post-content">
+            <p>A lo largo de la carrera suele ocurrir que tienes un comando en Linux que siempre ves de pasada pero que nunca te sientas a entender lo que realmente haces. Eso en el mundo de la informática ocurre mucho ya sí que somos conscientes de la gran potencia que tiene el Terminal en UNIX.</p>
+
+<p>La finalidad de la herramienta <strong>awk</strong> es ayudarnos en los casos en los que tenemos que manipular datos aplicando tareas como cambiar el formato de un archivo, encontrar elementos con cierta característica y por ejemplo es utilizada en los casos en los que compilamos algunos paquetes desde sus fuentes. No es tiene un sistema de tipos de datos complicado ya que únicamente utiliza números y cadenas de caracteres.</p>
+
+<p>Vamos a ver un ejemplo (archivoawk.dat), pongamos el caso que tenmos un fichero de datos en el que la primera columna son equipos de fútbol, la segunda es la puntuación que llevan en la liga y la tercera son los goles recibidos:</p>
+
+<p>F. C. Barcelona 24    8<br>
+Real Madrid     24    6
+Sevilla F.C.    6     3
+Equipo3         9     0
+Valencia F. C.  16    6</p>
+
+<p>Si por ejemplo queremos imprimir únicamente el nombre del equipo y el valor de los goles recibidos multiplicados por el valor de su puntuación, utilizando el lenguaje AWK lo haríamos así: </p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">awk</span> <span class="s1">&#39;$3 &gt; 0 {print $1, $2*$3}&#39;</span>
+</code></pre></div>
+
+<p>Por último, con el comando <em>awk</em> también podemos ejecutar ficheros que contengan más código, para ello podremos lanzar un programa escrito en el lenguaje de programación <em>awk</em> utilizando la siguiente instrucción:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">awk</span> <span class="o">-</span><span class="n">f</span> <span class="n">programa</span><span class="o">.</span><span class="n">awk</span> <span class="n">datos</span><span class="o">.</span><span class="n">awk</span>
+</code></pre></div>
+
+<p>Y en comando más avanzado sería por ejemplo el eliminar duplicados del fichero <em>iptables</em> (Fuente: <a href="https://twitter.com/climagic">https://twitter.com/climagic</a>): </p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">awk</span> <span class="s1">&#39;!a[$0]&#39;</span> <span class="sr">/etc/s</span><span class="n">ysconfig</span><span class="o">/</span><span class="n">iptables</span>
+</code></pre></div>
+
+<p>Por último en cuanto a los parámetros de Awk, con <strong>$0</strong> haremos referencia a una línea entera mientras que con <strong>$1</strong> estaremos haciendo referencia al primer argumento de los pasados en una lista separados por comas.  </p>
+
+<p>Fuentes: http://aprendiendoausarlinux.wordpress.com/2012/03/09/un-tutorial-de-awk/</p>
+
+        </section>
+
+        
+        <section class="archive">
+        	<h5>Archive</h5>
+    		<ul>
+    			
+    				<li><span>28 Dec 2013</span>  <a href="/mocks/angularjs/httpbackend/2013/12/28/Mocks-en-Angularjs.html">Mocks en AngularJS $httpBackend</a></li>
+    			
+    				<li><span>26 Dec 2013</span>  <a href="/notas/requirejs/javascript/2013/12/26/notas-sobre-requirejs.html">Empezando con RequireJS</a></li>
+    			
+    				<li><span>26 Dec 2013</span>  <a href="/awk/funcionamiento/2013/12/26/conociendo-por-fin-Awk.html">Conociendo por fin Awk</a></li>
+    			
+    				<li><span>26 Dec 2013</span>  <a href="/vim/tmux/colores/2013/12/26/256-colores-en-vim-con-tmux.html">256 colores en VIM con Tmux</a></li>
+    				
+    		</ul>
+        </section>
+        
+
+        <footer class="post-footer">
+        	<!-- If we want to display author's name and bio -->
+            
+                <section class="author">
+                	<header> <a href="/"> <img class="profile" src="/assets/images/profile.png" alt="Author's profile picture"></a></header>
+                	<article>
+                		<!-- Author Name -->
+                    	<h4> Joaquin Dev </h4>
+                    	<!-- Author Bio -->
+                    	<p> 
+                            Learning everyday, we learn everyday something new. I will write in this blog some ideas that I learn everyday so I don't forget them. 
+                    	</p>
+                    </article>
+                </section>                
+            
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Conociendo por fin Awk&amp;url=/awk/funcionamiento/2013/12/26/conociendo-por-fin-Awk.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/awk/funcionamiento/2013/12/26/conociendo-por-fin-Awk.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=/awk/funcionamiento/2013/12/26/conociendo-por-fin-Awk.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            
+        	
+        </footer>
+
+    </article>
+
+</main>
+
+
+    <footer class="site-footer">
+        <a class="subscribe icon-feed" href="/rss.xml"><span class="tooltip">Subscribe!</span></a>
+        <div class="inner">
+             <section class="copyright">All content copyright <a href="/">Folios</a> &copy;  &bull; All rights reserved.</section>
+             <section class="poweredby">Made with Jekyll using <a href="http://github.com/rosario/kasper">Kasper theme</a></section>
+        </div>
+    </footer>
+
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>   
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Folios - learning everyday</title>
+    <meta name="description" content="Folios. Learning something new about programming and technology" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
+    <!-- This is for syntax highlight -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css">
+    <!-- Customisation  -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/main.css" />
+
+</head>
+<body class="home-template">
+
+    
+    <main class="content" role="main">
+
+    <article class="post">
+        <header class="post-header">
+            <a id="blog-logo" href="/">
+                
+                    <span class="blog-title">Folios</span>
+                 
+            </a>
+        </header>
+        
+        <span class="post-meta">
+        	<time datetime="2013-12-28">28 Dec 2013</time>
+        	
+       	</span>
+
+        <h1 class="post-title">Mocks en AngularJS $httpBackend</h1>
+
+        <section class="post-content">
+            <p>El servicio <strong>$httpBackend</strong>, como su nombre indica, proporciona un servicio de bajo nivel equivalente a un <em>backend</em> para interactuar con <em>XMLHttpRequest</em>. Este servicio te evita los problemas relacionados con las incompatibilidades de los navegadores y los detalles para permitir las peticiones entre dominios diferentes utilizando JSONP. Sobre este servicio está situado el ya conocido <strong>$http</strong>. </p>
+
+<p>El módulo <code>ngMock</code> contiene un servicio con el mismo nombre el cual nos va a permitir realizar simulaciones relacionadas con las llamadas HTTP. Esto es muy práctico en situaciones en las que todavía no tenemos un <em>backend</em> y necesitamos simular que una API nos devuelve información. </p>
+
+<p>Por tanto, lo primero que hay que hacer es cargar el script de <code>angular-mock.js</code>.</p>
+
+<h3>Empecemos con la simulación del Backend</h3>
+
+<p>En el mundo de Angularjs tenemos el servicio <code>$resource</code> para interactuar con interfaces RESTful. Este servicio nos proporciona un nivel más alto de abstracción que el propio servicio <code>$http</code> de forma que no tenemos que escribir el código por defecto para realizar las típicas operaciones CRUD (crear, leer, actualizar y borrar). Por tanto la situación es la siguiente: nuestro servicio <code>$http</code> va a utilizar <code>$httpBackend</code> el cual va a ser el que responda directamente a las peticiones que hagamos a una API en lugar de enviarlas verdaderamente a la API. Veamos un ejemplo por ejemplo en el que capturamos o interceptamos una llamada a una API: </p>
+
+<div class="highlight"><pre><code class="ruby"><span class="vg">$httpBackend</span><span class="o">.</span><span class="n">whenGET</span><span class="p">(</span><span class="s1">&#39;/api/101/activity/&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">){</span>
+  <span class="k">return</span> <span class="o">[</span><span class="mi">200</span><span class="p">,</span><span class="o">[</span><span class="p">{</span><span class="ss">workoutDate</span><span class="p">:</span> <span class="kp">new</span> <span class="no">Date</span><span class="p">(),</span> <span class="ss">activityType</span><span class="p">:</span> <span class="s1">&#39;Running&#39;</span><span class="p">,</span> <span class="ss">duration</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span>  <span class="ss">calories</span><span class="p">:</span> <span class="mi">200</span><span class="p">,</span> <span class="ss">distance</span><span class="p">:</span> <span class="mi">2</span><span class="o">.</span><span class="mi">2</span><span class="p">}</span><span class="o">]]</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<h4>Secciones interesantes</h4>
+
+<p>Vamos a recordar algunos aspectos interesantes. La sección de código <code>run</code>, es el fragmento de código por el que se pasa cuando la aplicación de Angularjs está arrancando. Y es en esta sección donde se puede configurar todas las sustituciones a llamadas HTTP que queramos. Incluso podemos utilizar diferentes secciones dependiendo del tipo de llamada como por ejemplo: <code>whenGet</code>, <code>whenPOST</code>, <code>whenPUT</code> o utilizar tus propios métodos. </p>
+
+<p>Ahora toca analizar el método <code>when&lt;method&gt;(method, url, data, headers)</code>. Como ves tenemos cuatro parámetros para definir o simular la interacción con nuestro <em>backend</em>. De hecho las URLs se pueden definir como expresiones regulares, lo cual nos puede facilitar la captura de varias URLs bajo un mismo método, veamos un ejemplo:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="vg">$httpBackend</span><span class="o">.</span><span class="n">whenPOST</span><span class="p">(</span><span class="sr">/api\/(\d+)\/activity/</span><span class="p">)</span><span class="o">.</span><span class="n">respond</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="nb">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="p">){</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="n">var</span> <span class="n">searchResult</span> <span class="o">=</span> <span class="n">ulr</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sr">/api\/(d+)\/activity/</span><span class="p">);</span>
+  <span class="n">var</span> <span class="n">userId</span> <span class="o">=</span> <span class="n">parseInt</span><span class="p">(</span><span class="n">searchResult</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">);</span>
+  <span class="n">var</span> <span class="n">savedActivity</span> <span class="o">=</span> <span class="n">activitiesRepository</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="k">return</span> <span class="o">[</span><span class="mi">200</span><span class="p">,</span> <span class="n">savedActivity</span><span class="o">]</span><span class="p">;</span>
+<span class="p">})</span>
+</code></pre></div>
+
+<p>Ahora bien, supongo que ya te estarás preguntando cómo puedes hacer para que una petición si que llegue hasta la API en lugar de simular la respuesta con httpBackend. Esto puede resultar útil porque a medida que el <em>backend developer</em> vaya completando funcionalidades en la API, podemos ir incorporándolas en nuestro <em>workflow</em>. Para ello, tenemos que utilizar el método <code>passThrough</code> en lugar de declarar una función como <em>callback</em>: </p>
+
+<div class="highlight"><pre><code class="ruby"><span class="vg">$httpBackend</span><span class="o">.</span><span class="n">whenGET</span><span class="p">(</span><span class="sr">/\partials\//</span><span class="p">)</span><span class="o">.</span><span class="n">passThrough</span><span class="p">();</span>
+</code></pre></div>
+
+<h3>Utiliza un almacenamiento local</h3>
+
+<p>Una vez que podemos interceptar las llamadas a nuestra API, lo siguiente que podemos necesitar es realizar un almacenamiento de los datos. Para ello, podemos hacer uso del objeto <code>Repository</code>, el cual proporciona métodos como por ejemplo <code>save</code>, <code>delete</code>, <code>find</code>, etc. La gestión de los datos la hace automáticamente así que no tenemos que preocuparnos por asignar identificadores y todo este tipo de gestiones. Algunos ejemplos de uso de este repositorio son:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">var</span> <span class="n">userRepository</span> <span class="o">=</span> <span class="kp">new</span> <span class="n">utils</span><span class="o">.</span><span class="n">Repository</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">activitiesRepository</span> <span class="o">=</span> <span class="kp">new</span> <span class="n">utils</span><span class="o">.</span><span class="n">Repository</span><span class="p">();</span>
+<span class="n">var</span> <span class="n">savedActivity</span> <span class="o">=</span> <span class="n">activitiesRepository</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">activities</span> <span class="o">=</span> <span class="n">activitiesRepository</span><span class="o">.</span><span class="n">findAll</span><span class="p">({</span><span class="ss">userId</span><span class="p">:</span> <span class="n">userId</span><span class="p">});</span>
+</code></pre></div>
+
+<p>Fuente: <a href="http://www.codeorbits.com/blog/2013/12/20/rapid-angularjs-prototyping-without-real-backend/?goback=%2Egde_4896676_member_5822732500522262528#%21">CodeOrbits</a></p>
+
+        </section>
+
+        
+        <section class="archive">
+        	<h5>Archive</h5>
+    		<ul>
+    			
+    				<li><span>28 Dec 2013</span>  <a href="/mocks/angularjs/httpbackend/2013/12/28/Mocks-en-Angularjs.html">Mocks en AngularJS $httpBackend</a></li>
+    			
+    				<li><span>26 Dec 2013</span>  <a href="/notas/requirejs/javascript/2013/12/26/notas-sobre-requirejs.html">Empezando con RequireJS</a></li>
+    			
+    				<li><span>26 Dec 2013</span>  <a href="/awk/funcionamiento/2013/12/26/conociendo-por-fin-Awk.html">Conociendo por fin Awk</a></li>
+    			
+    				<li><span>26 Dec 2013</span>  <a href="/vim/tmux/colores/2013/12/26/256-colores-en-vim-con-tmux.html">256 colores en VIM con Tmux</a></li>
+    				
+    		</ul>
+        </section>
+        
+
+        <footer class="post-footer">
+        	<!-- If we want to display author's name and bio -->
+            
+                <section class="author">
+                	<header> <a href="/"> <img class="profile" src="/assets/images/profile.png" alt="Author's profile picture"></a></header>
+                	<article>
+                		<!-- Author Name -->
+                    	<h4> Joaquin Dev </h4>
+                    	<!-- Author Bio -->
+                    	<p> 
+                            Learning everyday, we learn everyday something new. I will write in this blog some ideas that I learn everyday so I don't forget them. 
+                    	</p>
+                    </article>
+                </section>                
+            
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Mocks en AngularJS $httpBackend&amp;url=/mocks/angularjs/httpbackend/2013/12/28/Mocks-en-Angularjs.html"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=/mocks/angularjs/httpbackend/2013/12/28/Mocks-en-Angularjs.html"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=/mocks/angularjs/httpbackend/2013/12/28/Mocks-en-Angularjs.html"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            
+        	
+        </footer>
+
+    </article>
+
+</main>
+
+
+    <footer class="site-footer">
+        <a class="subscribe icon-feed" href="/rss.xml"><span class="tooltip">Subscribe!</span></a>
+        <div class="inner">
+             <section class="copyright">All content copyright <a href="/">Folios</a> &copy;  &bull; All rights reserved.</section>
+             <section class="poweredby">Made with Jekyll using <a href="http://github.com/rosario/kasper">Kasper theme</a></section>
+        </div>
+    </footer>
+
+    
+    <script type="text/javascript" src="/assets/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Google Analytics Tracking code -->
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>   
+</body>
+</html>
