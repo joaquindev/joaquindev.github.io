@@ -1,16 +1,16 @@
 #Source code for my blog
+------------------------
 
 Based in the work of [Rosario/Kasper Repository][rosario]. The only change I have made is changing the font-family to *Lato* in `main.css`: 
 
-{% highlight ruby %}
+```ruby
 @import url(http://fonts.googleapis.com/css?family=Lato:400,300,500,700,400italic,300italic);
 
 body {
 	font: 17px/25px Lato, Helvetica, Arial, sans-serif;
   	font-weight: 100;
 }
-{% endhighlight %}
-
+```
 
 [rosario]: http://github.com/rosario/kasper
 
