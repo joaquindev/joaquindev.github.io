@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-  xmlns:dc="http://purl.org/dc/elements/1.1/"
-  version="2.0"
+<rss version="2.0"
   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
   xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Folios</title>
     <link>http://joaquindev.github.io</link>
-    <description>learning everyday</description>
+    <description>Joaquin Dev. Learning everyday</description>
     <pubDate>Sat, 28 Dec 2013 19:53:00 +0100</pubDate>
     <item>
       <title>Mocks en AngularJS $httpBackend</title>
