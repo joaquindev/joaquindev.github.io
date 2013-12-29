@@ -1,0 +1,150 @@
+<p>First of all I recommend you to go check and start <a href="https://twitter.com/dawsontoth">Dawson Toth</a> awesome Titanium tutorial. So, source:<a href="http://appc.me/learn/">Learning Titanium (Created by Dawson Toth)</a>.</p>
+
+<p>The first thing to know in Titanium is that all applications start creating a window so we are going to create a window and store a reference to it in the variable <code>win</code>:</p>
+
+<pre class="javascript"><code class="javascript">
+var win = Ti.UI.createWindow();
+</code></pre>
+
+<p>Windows take a single argument: a <em>dictionary</em> which is another variable that will be send as an argument in the <code>createWindows()</code> method:</p>
+
+<pre class="javascript"><code class="javascript">
+var dictionary = {};
+</code></pre>
+
+<p>As we only use our dictionary variable once, we can mix both ideas in just one:</p>
+
+<pre class="javascript"><code class="javascript">
+var win = Ti.UI.createWindow({});
+</code></pre>
+
+<p>The dictionary variable can contain any <a href="http://docs.appcelerator.com/titanium/2.1/#!/api/Titanium.UI.Window">windows property</a>, for instance the property <code>backgroundColor</code>:</p>
+
+<pre class="javascript"><code class="javascript">
+var win = Ti.UI.createWindow({ backgroundColor: 'green' });
+</code></pre>
+
+<p>Other properties that goes in the window object can be:</p>
+
+<pre class="javascript"><code class="javascript">
+var win = Ti.UI.createWindow({
+  backgroundColor: 'white', 
+  exitOnClose: true, 
+  fullscreen: false, 
+  title: 'title text' });
+</code></pre>
+
+<p>Next, we are already ready to make our window visible, to do so we can call the <code>open</code> method:</p>
+
+<pre class="javascript"><code class="javascript">
+win.open();
+</code></pre>
+
+<h3 id="views">Views</h3>
+
+<p>The power of an application in Titanium is, amongst other important things, is the option of creating views on top of a window. In fact, <a href="http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.View">views</a> are like an empty drawing canvas or a container. It is the base of all visible elements in Titanium. So let’s define a <code>view</code> and add it to our window:</p>
+
+<pre class="javascript"><code class="javascript">
+var view = Ti.UI.createView({
+  backgroundColor: 'green',
+  width: 100, height: 100
+});
+win.add(view);
+</code></pre>
+
+<p>As you think, views can be added inside other views like this:</p>
+
+<pre class="javascript"><code class="javascript">
+var outerView = Ti.UI.createView({
+  backgroundColor: 'red', 
+  width: 100, height: 100
+});
+
+var innerView = Ti.UI.createView({
+  backgroundColor: 'white', 
+  width: 20, heigth: 20
+});
+outerView.add(innerView);
+win.add(outerView);
+</code></pre>
+
+<p>Views can be positioned inside windows (or other views) in different ways:</p>
+
+<p>I. Placing it using distances:</p>
+
+<pre class="javascript"><code class="javascript">
+win.add(Ti.UI.createView({ 
+  backgroundColor: 'green', width: 20, height: 20, top: 10, left, 10
+}));
+</code></pre>
+
+<p>II. Placing it using percentages:</p>
+
+<pre class="javascript"><code class="javascript">
+win.add(Ti.UI.createView({
+  backgroundColor: 'red', width: 20, height: 20, right: '20%', top: 20
+}));
+</code></pre>
+
+<p>III. By explicitly defining the unit:</p>
+
+<pre class="javascript"><code class="javascript">
+win.add(Ti.UI.createView({
+  backgroundColor: 'blue', width: 20, height: 20, bottom: '1in'
+}));
+</code></pre>
+
+<h3 id="labels">Labels</h3>
+
+<p>A <a href="http://docs.appcelerator.com/titanium/2.1/index.html#!/api/Titanium.UI.Label">label</a> is a type of view that lets you display text. Similar to views, we can create a label using <code>Ti.UI.createLabel()</code> method:</p>
+
+<pre class="javascript"><code class="javascript">
+var win = Ti.UI.createWindow({ backgroundColor: '#fff' });
+
+win.add(Ti.UI.createLabel({
+  text: 'Text inside the label', textAlign: 'center', color: '#000'
+});
+</code></pre>
+
+<h3 id="buttons">Buttons</h3>
+
+<p>A <a href="http://docs.appcelerator.com/titanium/2.1/#!/api/Titanium.UI.Button">button</a> is just a type of view which can be clicked, so we use the <code>Ti.UI.createButton()</code> method and then we add the button to our window:</p>
+
+<pre class="javascript"><code class="javascript">
+var button = Ti.UI.createButton({ title: &quot;Click me, I'm a button!&quot;, textAlign: 'center', color: '#000'; }); 
+</code></pre>
+
+<p>Notice that we can change the alignment and color of our text button. Also, we can set <em>EventListeners</em> to our buttons to execute some Javascript code inside the web view:</p>
+
+<pre class="javascript"><code class="javascript">
+button.addEventListener('click', function(event){
+  alert('This is the alert JS code executed when you click this button');
+});
+</code></pre>
+
+<h3 id="graphics">Graphics</h3>
+
+<p>Graphics can be displayed in different ways:</p>
+
+<p>I. Using Image Views:</p>
+
+<p>The <code>ImageView</code> object is used to display a single image or series of animated images.</p>
+
+<pre class="javascript"><code class="javascript">
+win.add(Ti.UI.createImageView({
+  image: 'images/buttonImage.png', 
+  width: 100, height: 50, top: 10, left: 10
+}));
+</code></pre>
+
+<p>II. Using the <a href="http://docs.appcelerator.com/titanium/2.1/#!/api/Titanium.UI.View-property-backgroundImage">backgroundImage</a> property of views:</p>
+
+<pre class="javascript"><code class="javascript">
+win.add(Ti.UI.createView({
+  backgroundImage: 'images/button.png', 
+  width: 100, height: 50, top: 90, left:10
+}));
+</code></pre>
+
+<h1 id="post_in_process"><strong>[Post in process]</strong></h1>
+<hr />

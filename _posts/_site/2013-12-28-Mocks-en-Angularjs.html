@@ -1,21 +1,38 @@
-<hr />
-<p>Lo primero que te das cuenta al comenzar a trabajar con Tmux es su gran flexibilidad y potencia. Sin embargo, al ser una herramienta cuyo entorno de trabajo es el Terminal puede que no todo funcione a la primera. De hecho, en mi caso, al estar dentro de Tmux y abrir un fichero con VIM, únicamente me cargaba un perfil de 16 colores, que aunque tiene su puntito retro, no me resultaba útil porque los comentarios en gris no los podía ver. Para solucionarlo, basta con incluir el siguiente comando en tu fichero .tmux.conf:</p>
-<div class='highlight'><pre><code class='ruby'><span class='n'>set</span> <span class='o'>-</span><span class='n'>g</span> <span class='n'>terminal</span><span class='o'>-</span><span class='n'>overrides</span> <span class='s1'>&#39;xterm:colors=256&#39;</span>
+<p>El servicio <strong>$httpBackend</strong>, como su nombre indica, proporciona un servicio de bajo nivel equivalente a un <em>backend</em> para interactuar con <em>XMLHttpRequest</em>. Este servicio te evita los problemas relacionados con las incompatibilidades de los navegadores y los detalles para permitir las peticiones entre dominios diferentes utilizando JSONP. Sobre este servicio está situado el ya conocido <strong>$http</strong>.</p>
+
+<p>El módulo <code>ngMock</code> contiene un servicio con el mismo nombre el cual nos va a permitir realizar simulaciones relacionadas con las llamadas HTTP. Esto es muy práctico en situaciones en las que todavía no tenemos un <em>backend</em> y necesitamos simular que una API nos devuelve información.</p>
+
+<p>Por tanto, lo primero que hay que hacer es cargar el script de <code>angular-mock.js</code>.</p>
+
+<h3 id="empecemos_con_la_simulacin_del_backend">Empecemos con la simulación del Backend</h3>
+
+<p>En el mundo de Angularjs tenemos el servicio <code>$resource</code> para interactuar con interfaces RESTful. Este servicio nos proporciona un nivel más alto de abstracción que el propio servicio <code>$http</code> de forma que no tenemos que escribir el código por defecto para realizar las típicas operaciones CRUD (crear, leer, actualizar y borrar). Por tanto la situación es la siguiente: nuestro servicio <code>$http</code> va a utilizar <code>$httpBackend</code> el cual va a ser el que responda directamente a las peticiones que hagamos a una API en lugar de enviarlas verdaderamente a la API. Veamos un ejemplo por ejemplo en el que capturamos o interceptamos una llamada a una API:</p>
+<div class='highlight'><pre><code class='ruby'><span class='vg'>$httpBackend</span><span class='o'>.</span><span class='n'>whenGET</span><span class='p'>(</span><span class='s1'>&#39;/api/101/activity/&#39;</span><span class='p'>)</span><span class='o'>.</span><span class='n'>respond</span><span class='p'>(</span><span class='n'>function</span><span class='p'>(</span><span class='nb'>method</span><span class='p'>,</span> <span class='n'>url</span><span class='p'>,</span> <span class='n'>data</span><span class='p'>){</span>
+  <span class='k'>return</span> <span class='o'>[</span><span class='mi'>200</span><span class='p'>,</span><span class='o'>[</span><span class='p'>{</span><span class='ss'>workoutDate</span><span class='p'>:</span> <span class='kp'>new</span> <span class='no'>Date</span><span class='p'>(),</span> <span class='ss'>activityType</span><span class='p'>:</span> <span class='s1'>&#39;Running&#39;</span><span class='p'>,</span> <span class='ss'>duration</span><span class='p'>:</span> <span class='mi'>22</span><span class='p'>,</span>  <span class='ss'>calories</span><span class='p'>:</span> <span class='mi'>200</span><span class='p'>,</span> <span class='ss'>distance</span><span class='p'>:</span> <span class='mi'>2</span><span class='o'>.</span><span class='mi'>2</span><span class='p'>}</span><span class='o'>]]</span><span class='p'>;</span>
+<span class='p'>});</span>
 </code></pre></div>
-<p>Puede ser que utilices otro terminal por defecto, si ese es tu caso, tienes que cambiar <em>xterm</em> por el terminal que utilices.</p>
+<h4 id="secciones_interesantes">Secciones interesantes</h4>
 
-<p>Fuente:<a href="http://bentomas.com/2012-03-28/256-colors-in-tmux.html">bentomas.com</a></p>
+<p>Vamos a recordar algunos aspectos interesantes. La sección de código <code>run</code>, es el fragmento de código por el que se pasa cuando la aplicación de Angularjs está arrancando. Y es en esta sección donde se puede configurar todas las sustituciones a llamadas HTTP que queramos. Incluso podemos utilizar diferentes secciones dependiendo del tipo de llamada como por ejemplo: <code>whenGet</code>, <code>whenPOST</code>, <code>whenPUT</code> o utilizar tus propios métodos.</p>
 
-<p>Learning everyday, we learn everyday something new. I will write in this blog some ideas that I learn everyday <strong>so I don’t forget</strong> them.</p>
-
-<p>You’ll find this post in your <code>_posts</code> directory - edit this post and re-build (or run with the <code>-w</code> switch) to see your changes! To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention: YYYY-MM-DD-name-of-post.ext.</p>
-
-<p>Jekyll also offers powerful support for code snippets:</p>
-<div class='highlight'><pre><code class='ruby'><span class='k'>def</span> <span class='nf'>print_hi</span><span class='p'>(</span><span class='nb'>name</span><span class='p'>)</span>
-  <span class='nb'>puts</span> <span class='s2'>&quot;Hi, </span><span class='si'>#{</span><span class='nb'>name</span><span class='si'>}</span><span class='s2'>&quot;</span>
-<span class='k'>end</span>
-<span class='n'>print_hi</span><span class='p'>(</span><span class='s1'>&#39;Tom&#39;</span><span class='p'>)</span>
-<span class='c1'>#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span>
+<p>Ahora toca analizar el método <code>when&lt;method&gt;(method, url, data, headers)</code>. Como ves tenemos cuatro parámetros para definir o simular la interacción con nuestro <em>backend</em>. De hecho las URLs se pueden definir como expresiones regulares, lo cual nos puede facilitar la captura de varias URLs bajo un mismo método, veamos un ejemplo:</p>
+<div class='highlight'><pre><code class='ruby'><span class='vg'>$httpBackend</span><span class='o'>.</span><span class='n'>whenPOST</span><span class='p'>(</span><span class='sr'>/api\/(\d+)\/activity/</span><span class='p'>)</span><span class='o'>.</span><span class='n'>respond</span><span class='p'>(</span><span class='n'>function</span><span class='p'>(</span><span class='nb'>method</span><span class='p'>,</span> <span class='n'>url</span><span class='p'>,</span> <span class='n'>data</span><span class='p'>){</span>
+  <span class='n'>data</span> <span class='o'>=</span> <span class='no'>JSON</span><span class='o'>.</span><span class='n'>parse</span><span class='p'>(</span><span class='n'>data</span><span class='p'>);</span>
+  <span class='n'>var</span> <span class='n'>searchResult</span> <span class='o'>=</span> <span class='n'>ulr</span><span class='o'>.</span><span class='n'>match</span><span class='p'>(</span><span class='sr'>/api\/(d+)\/activity/</span><span class='p'>);</span>
+  <span class='n'>var</span> <span class='n'>userId</span> <span class='o'>=</span> <span class='n'>parseInt</span><span class='p'>(</span><span class='n'>searchResult</span><span class='o'>[</span><span class='mi'>1</span><span class='o'>]</span><span class='p'>);</span>
+  <span class='n'>var</span> <span class='n'>savedActivity</span> <span class='o'>=</span> <span class='n'>activitiesRepository</span><span class='o'>.</span><span class='n'>save</span><span class='p'>(</span><span class='n'>data</span><span class='p'>);</span>
+  <span class='k'>return</span> <span class='o'>[</span><span class='mi'>200</span><span class='p'>,</span> <span class='n'>savedActivity</span><span class='o'>]</span><span class='p'>;</span>
+<span class='p'>})</span>
 </code></pre></div>
-<p>Check out the <a href="http://jekyllrb.com">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/mojombo/jekyll">Jekyll’s GitHub repo</a>.</p>
-<hr /><hr />
+<p>Ahora bien, supongo que ya te estarás preguntando cómo puedes hacer para que una petición si que llegue hasta la API en lugar de simular la respuesta con httpBackend. Esto puede resultar útil porque a medida que el <em>backend developer</em> vaya completando funcionalidades en la API, podemos ir incorporándolas en nuestro <em>workflow</em>. Para ello, tenemos que utilizar el método <code>passThrough</code> en lugar de declarar una función como <em>callback</em>:</p>
+<div class='highlight'><pre><code class='ruby'><span class='vg'>$httpBackend</span><span class='o'>.</span><span class='n'>whenGET</span><span class='p'>(</span><span class='sr'>/\partials\//</span><span class='p'>)</span><span class='o'>.</span><span class='n'>passThrough</span><span class='p'>();</span>
+</code></pre></div>
+<h3 id="utiliza_un_almacenamiento_local">Utiliza un almacenamiento local</h3>
+
+<p>Una vez que podemos interceptar las llamadas a nuestra API, lo siguiente que podemos necesitar es realizar un almacenamiento de los datos. Para ello, podemos hacer uso del objeto <code>Repository</code>, el cual proporciona métodos como por ejemplo <code>save</code>, <code>delete</code>, <code>find</code>, etc. La gestión de los datos la hace automáticamente así que no tenemos que preocuparnos por asignar identificadores y todo este tipo de gestiones. Algunos ejemplos de uso de este repositorio son:</p>
+<div class='highlight'><pre><code class='ruby'><span class='n'>var</span> <span class='n'>userRepository</span> <span class='o'>=</span> <span class='kp'>new</span> <span class='n'>utils</span><span class='o'>.</span><span class='n'>Repository</span><span class='p'>();</span>
+<span class='n'>var</span> <span class='n'>activitiesRepository</span> <span class='o'>=</span> <span class='kp'>new</span> <span class='n'>utils</span><span class='o'>.</span><span class='n'>Repository</span><span class='p'>();</span>
+<span class='n'>var</span> <span class='n'>savedActivity</span> <span class='o'>=</span> <span class='n'>activitiesRepository</span><span class='o'>.</span><span class='n'>save</span><span class='p'>(</span><span class='n'>data</span><span class='p'>);</span>
+<span class='n'>var</span> <span class='n'>activities</span> <span class='o'>=</span> <span class='n'>activitiesRepository</span><span class='o'>.</span><span class='n'>findAll</span><span class='p'>({</span><span class='ss'>userId</span><span class='p'>:</span> <span class='n'>userId</span><span class='p'>});</span>
+</code></pre></div>
+<p>Fuente: <a href="http://www.codeorbits.com/blog/2013/12/20/rapid-angularjs-prototyping-without-real-backend/?goback=%2Egde_4896676_member_5822732500522262528#%21">CodeOrbits</a></p>

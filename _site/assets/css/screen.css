@@ -23,6 +23,9 @@
    ========================================================================== */
 
 @import url(normalize.css);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,300,500,700,400italic,300italic);
+
+
 
 
 /* ==========================================================================
@@ -114,7 +117,8 @@ h4, h5, h6 {
     text-rendering: optimizeLegibility;
     line-height: 1;
     margin-top: 0;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
+	font: 17px/25px Lato, Helvetica, Arial, sans-serif;
 }
 
 h1 {

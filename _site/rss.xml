@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/"
-  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+<rss version="2.0"
   xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
-  version="2.0">
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Folios</title>
     <link>http://joaquindev.github.io</link>
     <description>Joaquin Dev. Learning everyday</description>
-    <pubDate>Sat, 28 Dec 2013 19:53:00 +0100</pubDate>
+    <pubDate>Sun, 29 Dec 2013 12:39:00 +0100</pubDate>
+    <item>
+      <title>First steps with Titanium</title>
+      <link>http://joaquindev.github.io/titanium/appcelerator/ios/2013/12/29/first-steps-with-titanium.html</link>
+      <description>&lt;p&gt;First of all I recommend you to go check and start &lt;a href=&quot;https://twitter.com/dawsontoth&quot;&gt;Dawson Toth&lt;/a&gt; awesome Titanium tutorial. So, source:&lt;a href=&quot;http://appc.me/learn/&quot;&gt;Learning Titanium (Created by Dawson Toth)&lt;/a&gt;. &lt;/p&gt;
+</description>
+      <pubDate>Sun, 29 Dec 2013 12:39:00 +0100</pubDate>
+      <dc:date>2013-12-29T12:39:00+01:00</dc:date>
+    </item>
     <item>
       <title>Mocks en AngularJS $httpBackend</title>
       <link>http://joaquindev.github.io/mocks/angularjs/httpbackend/2013/12/28/Mocks-en-Angularjs.html</link>
@@ -41,6 +49,6 @@
       <pubDate>Thu, 26 Dec 2013 11:28:00 +0100</pubDate>
       <dc:date>2013-12-26T11:28:00+01:00</dc:date>
     </item>
-    <dc:date>2013-12-28T19:53:00+01:00</dc:date>
+    <dc:date>2013-12-29T12:39:00+01:00</dc:date>
   </channel>
 </rss>
