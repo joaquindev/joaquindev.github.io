@@ -1,5 +1,4 @@
 #Source code for my blog
-------------------------
 
 Based in the work of [Rosario/Kasper Repository][rosario]. The only change I have made is changing the font-family to *Lato* in `main.css`: 
 
