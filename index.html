@@ -17,11 +17,11 @@ toremember: 'toremember.html'
             {% endif %}
             <h1 class="blog-title">{{ site.name}}</h1>
             <h2 class="blog-description"> 
-                {{ site.description }}. 
+                {{ site.description }} is a Computer Engineer who does  
                 {% if page.about %} 
                 <a href='{{site.baseurl}}{{page.about}}'> About me </a> {% endif %}
-                <a href='{{site.baseurl}}{{page.experiments}}'>Experiments</a>
-                <a href='{{site.baseurl}}{{page.toremember}}'>Things to remember</a>
+                <a href='{{site.baseurl}}{{page.experiments}}'>experiments</a>
+                and write <a href='{{site.baseurl}}{{page.toremember}}'>things to remember</a>
             </h2>
         </div>
     </div>
@@ -31,13 +31,13 @@ toremember: 'toremember.html'
 
     {% for post in paginator.posts %}
 
-    <article class="post">
+    <article class="inner">
         <header class="post-header">
-            <span class="post-meta"><time datetime="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time> {{!tags prefix="on "}}</span>
-            <h2 class="post-title"><a href="{{ post.url}}">{{ post.title }}</a></h2>
-
+          <span class="post-meta"><time datetime="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time> {{!tags prefix="on "}}</span>
+            <!--<h6 class="post-title"><a href="{{ post.url}}">{{ post.title }}</a></h6>-->
+            <a href="{{ post.url}}">{{ post.title }}</a>
         </header>
-    </article>
+        </article>
 
     {% endfor %}
 

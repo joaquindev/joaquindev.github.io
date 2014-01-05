@@ -1,11 +1,11 @@
 name: Folios 
-description: Joaquin Dev. Learning everyday
+description: JoaquinDev
 meta_description: "Folios. Learning something new about programming and technology"
 
 markdown: redcarpet
 pygments: true
 logo: false 
-paginate: 10
+paginate: 20
 
 # Details for the RSS feed generator
 url:            'http://joaquindev.github.io'
