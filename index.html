@@ -3,6 +3,8 @@ layout: default
 title: Home
 cover: false
 #about: 'about.html'
+experiments: 'experiments.html'
+toremember: 'toremember.html'
 ---
 
 <header class="site-head" {% if page.cover %} style="background-image: url({{ page.cover }})"{% endif%}>
@@ -16,7 +18,10 @@ cover: false
             <h1 class="blog-title">{{ site.name}}</h1>
             <h2 class="blog-description"> 
                 {{ site.description }}. 
-                {% if page.about %} <a href='{{site.baseurl}}{{ page.about }}'> About me </a> {% endif %}
+                {% if page.about %} 
+                <a href='{{site.baseurl}}{{page.about}}'> About me </a> {% endif %}
+                <a href='{{site.baseurl}}{{page.experiments}}'>Experiments</a>
+                <a href='{{site.baseurl}}{{page.toremember}}'>Things to remember</a>
             </h2>
         </div>
     </div>
