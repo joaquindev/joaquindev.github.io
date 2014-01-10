@@ -23,7 +23,7 @@ var whatTimeIsIt = require('./clock');
 whatTimeIsIt();
 ```
 
-Another way is exporting a function into the `exports` object so when we write our require instruction later, we are going to get back and object (instead of a function), so we create export our function into the `exports` object like this:  
+Another way is exporting a function into the `exports` object so when we write our require instruction later, we are going to get back an object (instead of a function), so we create export our function into the `exports` object like this:  
 
 ```javascript
 //clock_object.js
@@ -40,7 +40,7 @@ var object = require('./clock_object');
 object.whatTimeIsIt();
 ```
 
-Notice that there is no need to assign what is return by require to an object, we can call require and call the function that it returns directly:
+Notice that there is no need to assign what is return by `require` to an object, we can call `require` and call the function that it returns directly:
 
 ```javascript
 console.log(require('./clock_object').whatTimeIsIt();
