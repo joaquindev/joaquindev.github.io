@@ -45,6 +45,14 @@ Notice that there is no need to assign what is return by `require` to an object,
 ```javascript
 console.log(require('./clock_object').whatTimeIsIt();
 ```
+###How Require search for modules
+
+`Require` will search for the modules like this: 
+
+1. With ./ `require` is going to check in the same directory
+2. With ../ `require` will look in parent directory
+3. We can also send an absolute path
+4. If we just send the name of the module without anything else, `require` will search by default in the `node_modules` directory. If it doesn't find it there, `require` will go up one directory until it finds it.
 
 Sources: Inspired by [Real Time Web Code School Course][realtimewebcodeschoolcourse]
 
