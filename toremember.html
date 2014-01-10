@@ -15,11 +15,11 @@ title: Things and ideas to remember
     </span>
     <hr/>
     <br/>
-    <strong>topic of the idea or text to remember</strong>
-    <small><a href="">link text </a></small>
+    <strong>Semantic versioning</strong>
+    <small><a href="http://semver.org">Semver.og </a></small>
     <span>
     <br/>
-    text and ideas to remember
+"connect": "1.8.7". The 1 indicates the Major version, the 8 indicates the Minor version and the 7 is the Patch level. You don't have to specify the exact version number in your package.json. We don't exactly have to put our exact version number, we can use ranges, for instance: "connect": "~1" that means npm will work as long as the version is >=1.0.0 <2.0.0, this is dangerous because any changes to the Minor version could break your App. We can make it a little safer by doing this: "connect":"~1.8" that npm will install anything that >=1.8 <2.0.0, but we could have problems because for instance there are usually name changes in API from Minor to Minor versions. The safest way to define a range is: "connect":"~1.8.7". This means Npm will install only the patches which means: >=1.8.7 <1.9.0 It shouldn't break your application.
     </span>
     <hr/>
     <strong>topic of the idea or text to remember</strong>
