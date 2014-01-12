@@ -28,7 +28,7 @@ document.body.appendChild(renderer.view);
 Vamos a crear una imagen o un *sprite* que es lo que se considera una unidad visual básica en los videojuegos. La apariencia visual de un *sprite* es la textura que se le ha asignado: 
 
 ```javascript
-var texture = PIXI.Texture.fromImage('img/leaf.png');
+var texture = PIXI.Texture.fromImage('img/soccerball8bitpixelatedfilter12.png');
 var leaf = new PIXI.Sprite(texture);
 
 //rotamos la hoja 
