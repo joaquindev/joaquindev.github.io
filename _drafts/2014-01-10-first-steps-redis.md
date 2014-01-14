@@ -13,7 +13,7 @@ First of all, go check out the [repository][repositoryurl] I created with exampl
 
 ##Example 01 
 
-
+{% gist 8426404 %}
 
 
 Sources:
@@ -24,3 +24,6 @@ Sources:
 
 <!-- [id_ref]: URL--> 
 [repositoryurl]: https://github.com/joaquindev/redis101
+[tryredis]: http://try.redis.io
+
+
