@@ -9,9 +9,13 @@ First of all, go check out the [repository][repositoryurl] I created with exampl
 
 ##Installing Redis on your Mac  
 
+
 ##Starting Redis server
+$redis-2.8.3/src]$ ./redis-server
 
 ##Example 01 
+
+
 
 {% gist 8426404 %}
 
