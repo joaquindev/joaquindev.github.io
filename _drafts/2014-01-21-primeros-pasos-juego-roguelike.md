@@ -23,13 +23,72 @@ Tras declarar nuestro objeto `Game`, vamos ahora con la función que definimos e
 
 {% gist 8538074 %} 
 
-Por tanto, ahora tenemos que crear todas las funciones que hemos llamado, concretamente son estas: 
+Por tanto, ahora tenemos que crear todas las funciones que hemos llamado, concretamente son estas, que como ves corresponden básicamente llevar a cabo la inicialización de los objetos implicados: 
 
 - `initMap()`
-- `initCell()`
-- `initActors()`
 - `drawMap()`
+- `initCell()`
 - `drawActors()`
+- `initActors()`
+
+###initMap()
+
+En esta función creará un nuevo mapa aleatorio, para ello, iremos recorriendo todas las casillas de la matriz que representa el mapa y rellenaremos con mayor probabilidad con el carácter que representa una pared que un espacio libre, para ello haremos uso de la variable `map`:
+
+{% gist 8558198 %} 
+
+###drawMap()
+
+Esta función es la encargada de pasar el contenido de la variable `map` a la matriz que representa la pantalla llamada `screen`, por tanto simplemente recorreremos el mapa y realizaremos la asignación a la propiedad `content` de la variable `screen`: 
+
+{% gist 8558244 %}
+
+###initCell()
+
+Esta función se utiliza dentro de la función `create` y es la encargada de devolver un valor que será el que *pushearemos* al objeto `newRow` que será cada nueva línea del objeto `screen`. Recordemos que estas celdas van a contener caracteres ascii por lo que al insertarla se van a poner con unas características determinadas: 
+
+{% gist 8558380 %}
+
+###drawActors()
+
+Con esta función dibujaremos en cada una de las posiciones de cada uno de los actores (definida por las coordenadas `actorList[a].x` y `actorList[a].y`), el número de puntos de vida que le quedan a dicho actor. Para ello justo en el momento de dibujar cada actor, también comprobaremos con una condición *inline* los puntos de vida que le quedan o una letra **e** en caso de que el personaje esté intacto:
+
+{% gist 8558525 %}
+
+
+
+
+
+
+
+
+
+
+
+
+##Funciones auxiliares
+
+###randomInt(max)
+
+Se trata de una función que utilizaremos para obtener un valor aleatorio el cual será como máximo el valor `max`: 
+
+{% gist 8558282 %}
+
+###canGo(actor, dir)
+
+//TODO
+
+###moveTo(actor, dir)
+
+//TODO
+
+###onKeyUp(event)
+
+//TODO
+
+###aiAct(actor)
+
+//TODO
 
 
 <!-- [id_ref]: URL--> 
