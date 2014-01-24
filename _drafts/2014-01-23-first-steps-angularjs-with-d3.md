@@ -29,7 +29,19 @@ Cool, now we can add as much `donut-chart` tags as we want to display as many do
 
 {% gist 8576512 %} 
 
-NEXT: Continue from minute 30:30
+###Adding ng-repeat
+
+Let's add `ng-repeat` directive to draw several charts. To do that, we create an array of arrays with `ng-init` and we don't need to repeat the `<donut-chart>` directive, we just use our `ng-repeat` inside our `donut-chart`: 
+
+{% gist 8597904 %} 
+
+###Using a controller
+
+We can create a controller and declare the data there. We simple move the use of `ng-init` to our controller: 
+
+{% gist 8598094 %}
+
+NEXT: Continue from minute 32:00
 
 
 
