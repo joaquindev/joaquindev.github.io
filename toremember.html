@@ -22,6 +22,14 @@ title: Things and ideas to remember
 "connect": "1.8.7". The 1 indicates the Major version, the 8 indicates the Minor version and the 7 is the Patch level. You don't have to specify the exact version number in your package.json. We don't exactly have to put our exact version number, we can use ranges, for instance: "connect": "~1" that means npm will work as long as the version is >=1.0.0 <2.0.0, this is dangerous because any changes to the Minor version could break your App. We can make it a little safer by doing this: "connect":"~1.8" that npm will install anything that >=1.8 <2.0.0, but we could have problems because for instance there are usually name changes in API from Minor to Minor versions. The safest way to define a range is: "connect":"~1.8.7". This means Npm will install only the patches which means: >=1.8.7 <1.9.0 It shouldn't break your application.
     </span>
     <hr/>
+    <strong>Functions are first class objects in Javascript</strong>
+    <small><a href="http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/">Helephant.com</a></small>
+    <span>
+    <br/>
+    This means that functions are a special type of object that can do all the things that regular objects can do, like any other variable. A function is an instance of the Object type. Check it out: <code>alert(nameFunction instanceof Object);</code>. It can have properties and has a link back to its constructor method: <code>foo.food = "text"; alert(foo.food); alert(foo.constructor);</code>. You can store the function in a variable: <code>var storesfunction = foo;</code> and then execute it: <code>storesfunction()</code> which is going to execute in the end: <code>foo()</code>. You can pass the function as a parameter to another function: <code>foo2([foo])</code>. Or you can return the function from a function: <code>function foo(){ return 'text'; } var variable = foo(); variable();</code>. In fact, object methods are notheing special in JS. They just are properties that contain a function instead of something like a string variable or int value: <code>var fooObject = { name: "object-foo", age: 34, sayHi: function(){ alert("Hi!");}}</code> 
+    </span>
+    <hr/>
+    <hr/>
     <strong>topic of the idea or text to remember</strong>
     <small><a href="">link text </a></small>
     <span>
@@ -29,5 +37,7 @@ title: Things and ideas to remember
     text and ideas to remember
     </span>
     <hr/>
+<
 </article>
+
 
