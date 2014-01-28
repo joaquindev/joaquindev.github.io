@@ -30,6 +30,14 @@ title: Things and ideas to remember
     </span>
     <hr/>
     <hr/>
+    <strong>The 3 Watch Depths of AngularJS</strong>
+    <small><a href="http://teropa.info/blog/2014/01/26/the-three-watch-depths-of-angularjs.html?goback=%2Egde_4896676_member_5833759925355974660#%21">Tero Parviainen Blog - The Three Watch Depths of AngularJS</a></small>
+    <span>
+    <br/>
+    Hay tres formas de estar controlando un valor en el $scope. El primero es registrar un Watch sobre referencias (de hecho se usa el operador ===): <code>$scope.$watch(_,_,false);</code>, así podremos controlar asignaciones como esta: <code>$scope.users = newUsers</code>. La segunda forma es registrar un Watch en una colección (bien sea arrays, objetos como arrays y objetos en general): <code>$scope.$watchCollection(_,_)</code>, controla al poner, quitar, reemplazar o reordenar los objetos de la colección pero no los valores de dichos objetos. Para controlar el tercer nivel de profundidad tenemos los <bold>Equality Watches</bold> que registraremos así: <code>$scope.$watch(_,_,true)</code> y que controlará cualquier cambio en los valores de cualquier objeto. Esta tercera opción resulta ser la que más carga tiene. Algunos ejemplos de estos tres tipos de profundidad los encontramos directamente en AngularJS, para las referencias por ejemplo: ngModel, ngClass, ngIf, ngSwitch, $location, ngBind. Para las colecciones: ngRepeat. Para los valores: ngClass y ngStyle.  
+    </span>
+    <hr/>
+    <hr/>
     <strong>topic of the idea or text to remember</strong>
     <small><a href="">link text </a></small>
     <span>
@@ -37,7 +45,22 @@ title: Things and ideas to remember
     text and ideas to remember
     </span>
     <hr/>
-<
+    <hr/>
+    <strong>topic of the idea or text to remember</strong>
+    <small><a href="">link text </a></small>
+    <span>
+    <br/>
+    text and ideas to remember
+    </span>
+    <hr/>
+    <hr/>
+    <strong>topic of the idea or text to remember</strong>
+    <small><a href="">link text </a></small>
+    <span>
+    <br/>
+    text and ideas to remember
+    </span>
+    <hr/>
 </article>
 
 
