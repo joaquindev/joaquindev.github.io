@@ -7,21 +7,20 @@ experiments: 'experiments.html'
 toremember: 'toremember.html'
 ---
 
-<header class="site-head" {% if page.cover %} style="background-image: url({{ page.cover }})"{% endif%}>
+<header class="site-head" {% if page.cover %} style="background-image: url({{ page.cover }})"{% endif %}>
     <div class="vertical">
         <div class="site-head-content" class="inner">
             {% if page.logo %}
                 <a class="blog-logo" href="{{ site.baseurl }}">
-                    <img src="{{ page.logo}}" alt="Blog Logo" />
+                    <img src="{{ page.logo }}" alt="Blog Logo" />
                 </a>
             {% endif %}
-            <h1 class="blog-title">{{ site.name}}</h1>
+            <h1 class="blog-title">{{ site.name }}</h1>
             <h2 class="blog-description"> 
                 {{ site.description }} is a Computer Engineer who does  
-                {% if page.about %} 
-                <a href='{{site.baseurl}}{{page.about}}'> About me </a> {% endif %}
-                <a href='{{site.baseurl}}{{page.experiments}}'>experiments</a>
-                and write <a href='{{site.baseurl}}{{page.toremember}}'>things to remember</a>
+                {% if page.about %} <a href='{{ site.baseurl }}{{ page.about }}'> About me </a> {% endif %}
+                <a href='{{ site.baseurl }}{{ page.experiments }}'>experiments</a>
+                and write <a href='{{ site.baseurl }}{{ page.toremember }}'>things to remember</a>
             </h2>
         </div>
     </div>
@@ -33,9 +32,9 @@ toremember: 'toremember.html'
 
     <article class="inner">
         <header class="post-header">
-          <span class="post-meta"><time datetime="{{ post.date | date_to_string }}">{{ post.date | date_to_string }}</time> {{!tags prefix="on "}}</span>
-            <!--<h6 class="post-title"><a href="{{ post.url}}">{{ post.title }}</a></h6>-->
-            <a href="{{ post.url}}">{{ post.title }}</a>
+          <span class="post-meta"><time datetime="{{ post.date | date:'%Y %m %d' }}">{{ post.date | date_to_string }}</time> {{ !tags prefix="on " }}</span>
+            <!--<h6 class="post-title"><a href="{{ post.url }}">{{ post.title }}</a></h6>-->
+            <a href="{{ post.url }}">{{ post.title }}</a>
         </header>
         </article>
 
@@ -51,12 +50,10 @@ toremember: 'toremember.html'
           {% endif %}
         {% endif %}
 
-        <span class="page-number"> Page {{paginator.page}} of {{paginator.total_pages}} </span>
+        <span class="page-number"> Page {{ paginator.page }} of {{ paginator.total_pages }} </span>
         
         {% if paginator.next_page %} 
         <a class="older-posts" href="/page{{ paginator.next_page }}/" title="Next Page">Older Posts &raquo;</a>
         {% endif %} 
     </nav>
-    
-
 </main>
