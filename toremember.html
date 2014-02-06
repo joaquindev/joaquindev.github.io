@@ -38,11 +38,11 @@ title: Things and ideas to remember
     </span>
     <hr/>
     <hr/>
-    <strong>topic of the idea or text to remember</strong>
-    <small><a href="">link text </a></small>
+    <strong>Differences between Assert, Expect and Should in testing</strong>
+    <small><a href="https://stackoverflow.com/questions/21396524/what-is-the-difference-between-assert-expect-and-should-in-chai">Stack overflow - What is the difference between assert, Expect and should in chai</a></small>
     <span>
     <br/>
-    text and ideas to remember
+    The 3 interfaces present different styles of performing assertions. Ultimately, they perform the same task and some users prefer one style over the other. However, there are some technical considerations. 1) The <code>Assert</code> and <code>Expect</code> interfaces DO NOT modify <code>Object.prorotype</code>, whereas <code>Should</code> does. So they are better choice in an environment where you cannot or do not want to change it. 2) The <code>Assert</code> interface supports custom messages just about everywhere. For example: <code>assert.isTrue(foo, "foo should be true")</code>. The message will be output together with the failed assertion should it fails. This does not have an exact equivalent in Expect or Should. The Expect form which is analogous to <code>isTrue</code> in the Assert interface is: <code>expect(foo).to.be.true</code>. You can work around this limitation by testing for equality rather than truth: <code>expect(foo).to.equal(true, "foo should be true")</code>. Note that <code>assert.isTrue(foo)</code> and <code>expect(foo).to.be.true</code> and <code>foo.should.be.true</code> all output the following if you don not use a custom message and <code>foo === 1</code>: <code>AssertionError: expected 1 to be true</code>. To sum up, while the Expect and Should interface are nicer to read, it is not like one interface is more naturally informative than the oter when an assertion fails.  
     </span>
     <hr/>
     <hr/>
